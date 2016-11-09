@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <array>
+#include <stdexcept>
 #include "color.hpp"
 #include "rock.hpp"
 
@@ -22,17 +23,26 @@ class HexBoard {
         HexBoard() {
             reset();
         }
-        void add_rock (const int x, const int y, Color& c) {
+        void add_rock (const int x, const int y, const Rock& r) {
             if (valid_position(x,y)) {
-                if (board[x][y].color() != Color::GREY) {
-                    board[x][y].color(c);
-                }
+                board[x][y] = r;
+                return;
             }
+            throw std::logic_error("Rock cannot be added to the board");
         }
+
         friend std::ostream& operator<< <>(std::ostream&, const HexBoard&);
 
-        inline bool valid_position (const int x, const int y) {
-            return (x >= 0 && x <_N && y >= 0 && y <=_M);
+        inline bool valid_position (const size_t x, const size_t y) const {
+            return (x >= 0 && x < _N && y >= 0 && y < _M);
+        }
+        inline int X() const {return _N;}
+        inline int Y() const {return _M;}
+        const Rock& rock(const int x, const int y) const {
+            if (valid_position(x, y)) {
+                return board[x][y];
+            }
+            throw std::logic_error("Position is invalid");
         }
     private:
         std::array<std::array<Rock, _M>, _N> board;

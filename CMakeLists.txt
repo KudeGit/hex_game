@@ -28,6 +28,8 @@ ELSEIF(CMAKE_BUILD_TYPE MATCHES Debug)
     file(GLOB SOURCES "src/*.cpp")
     add_executable(hex ${SOURCES})
 
+    add_subdirectory(test)
+
 ELSE()
     message("Build type not supported")
 ENDIF()

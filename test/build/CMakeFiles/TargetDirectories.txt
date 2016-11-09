@@ -1,3 +1,0 @@
-/Users/dcuda/Dropbox/AlgoPrivate/hex_game/test/build/CMakeFiles/edit_cache.dir
-/Users/dcuda/Dropbox/AlgoPrivate/hex_game/test/build/CMakeFiles/rebuild_cache.dir
-/Users/dcuda/Dropbox/AlgoPrivate/hex_game/test/build/CMakeFiles/testColor.dir

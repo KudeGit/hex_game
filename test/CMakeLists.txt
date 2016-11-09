@@ -16,20 +16,49 @@ endif()
 include_directories($ENV{CPPUTEST_HOME}/include)
 link_directories($ENV{CPPUTEST_HOME}/lib)
 
+#color
 set (sourceColor ../src/color.cpp)
 set (sourceTestColor testColor.cpp)
 add_executable(testColor test.cpp ${sourceColor} ${sourceTestColor})
 target_link_libraries(testColor CppUTest)
 
 
-#Bring the headers, such as Student.h into the project
+#rock
+set (sourceColor ../src/color.cpp)
+set (sourceRock ../src/rock.cpp)
+set (sourceTestRock testRock.cpp)
+add_executable(testRock test.cpp ${sourceRock} ${sourceTestRock} ${sourceColor})
+target_link_libraries(testRock CppUTest)
 
-#Can manually add the sources using the set command as follows:
-#set(SOURCES src/mainapp.cpp src/Student.cpp)
+
+#hexboard
+set (sourceColor ../src/color.cpp)
+set (sourceRock ../src/rock.cpp)
+set (sourceHexboard ../src/hexboard.cpp)
+set (sourceTestHexboard testHexBoard.cpp)
+add_executable(testHexboard test.cpp
+    ${sourceRock}
+    ${sourceColor}
+    ${sourceHexboard}
+    ${sourceTestHexboard})
+target_link_libraries(testHexboard CppUTest)
 
 
-#However, the file(GLOB...) allows for wildcard additions:
+#player
+set (sourceColor ../src/color.cpp)
+set (sourceRock ../src/rock.cpp)
+set (sourceHexboard ../src/hexboard.cpp)
+set (sourcePlayer ../src/player.cpp)
+set (sourceTestPlayer testPlayer.cpp)
+add_executable(testPlayer test.cpp
+    ${sourceRock}
+    ${sourceColor}
+    ${sourceHexboard}
+    ${sourcePlayer}
+    ${sourceTestPlayer})
+target_link_libraries(testPlayer CppUTest)
 
 
-#cmake_minimum_required(VERSION 2.8.9 FATAL_ERROR)
+add_executable(all_tests test.cpp ${testColor} ${testRock})
+target_link_libraries(all_tests CppUTest)
 
